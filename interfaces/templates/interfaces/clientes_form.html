@@ -1,0 +1,138 @@
+{% extends "base/base.html" %}
+
+{% block page_content %}
+
+<form method="POST" class="form-inline">
+    {% csrf_token %}
+    <div class="col-xl-12 col-md-12 mb-12">
+        {% if obj %}
+        <div class="card border-left-warning shadow h-100 py-2">
+        {% else %}
+        <div class="card border-left-primary shadow h-100 py-2">
+        {% endif %}
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            {% if obj %} Editar {% else %} Nuevo {% endif %} cliente
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <!-- Nombre -->
+                        <div class="row">
+                            <div class="col-6">
+                                <div class='input-group'>
+                                    <input type="text" name="name" maxlength="20" class="form-control" required id='id_name' placeholder="Nombre" 
+                                    value="{% if obj %} {{ obj.name }} {% endif %}">
+                                </div>
+                            </div>
+                            <!-- cod. cliente  -->
+                            <div class="col-2">
+                                <div class='input-group'>
+                                    <input type="text" name="ref" maxlength="6" class="form-control" required id='id_ref' placeholder="Nro Cliente"
+                                    value="{% if obj %} {{ obj.ref }} {% endif %}">
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="dropdown-divider"></div>    
+                        <div class="row">
+                            <!-- Calle  -->
+                            <div class="col-6">
+                                <div class="input-group">
+                                    <input type="text" name="street" maxlength="30" class="form-control" required id='id_street' placeholder="Calle" 
+                                    value="{% if obj %} {{ obj.street }} {% endif %}">
+                                </div>
+                            </div>
+                            
+                            <!-- Ciudad  -->    
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <input type="text" name="city" maxlength="20" class="form-control" required id='id_city' placeholder="Ciudad" 
+                                    value="{% if obj %} {{ obj.city }} {% endif %}">
+                                </div>
+                            </div>
+
+                            <!-- CP  -->    
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <input type="text" name="zip" maxlength="24" class="form-control" required id='id_zip' placeholder="Codigo Postal" 
+                                    value="{% if obj %} {{ obj.zip }} {% endif %}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>    
+                        <div class="row">
+                            <!-- Telefono  -->
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <input type="text" name="phone" maxlength="16" class="form-control" required id='id_phone' placeholder="Telefono" 
+                                    value="{% if obj %} {{ obj.phone }} {% endif %}">
+                                </div>
+                            </div>
+                            
+                            <!-- Mobile  -->    
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <input type="text" name="mobile" maxlength="16" class="form-control" required id='id_mobile' placeholder="Celular" 
+                                    value="{% if obj %} {{ obj.mobile }} {% endif %}">
+                                </div>
+                            </div>
+
+                            <!-- email  -->    
+                            <div class="col-6">
+                                <div class="input-group">
+                                    <input type="text" name="email" maxlength="40" class="form-control" required id='id_email' placeholder="mail" 
+                                    value="{% if obj %} {{ obj.email }} {% endif %}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown-divider"></div>                                           
+                        <div class="row">
+                            <!-- Tipo Doc  -->
+                            <div class="col-3">
+                                {{ form.main_id_category }}
+                            </div>
+                            
+                            <!-- Nro Doc  -->    
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <input type="text" name="main_id_number" maxlength="10" class="form-control" required id='id_main_id_number' placeholder="Nro. documento" 
+                                    value="{% if obj %} {{ obj.main_id_number }} {% endif %}">
+                                </div>
+                            </div>
+
+                            <!-- Tipo responsable  -->    
+                            <div class="col-6">
+                                {{ form.afip_responsability_type }}
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>    
+                        <div class="row">
+                            <!-- TC Visa  -->    
+                            <div class="col-6">
+                                <div class="input-group">
+                                    <input type="text" name="x_tc_visa" maxlength="16" class="form-control" required id='id_x_tc_visa' placeholder="16 Nros TC VISA" 
+                                    value="{% if obj %} {{ obj.x_tc_visa }} {% endif %}">
+                                </div>
+                            </div>
+                        </div>                        
+
+                        <!-- botones -->
+                        <div class="dropdown-divider"></div>
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" class="btn btn-danger"><span class="fa fa-save"></span>Guardar</button>
+                                <a href="{% url 'interfaces:clientes_list' %}" class="btn btn-success"><span class="fa fa-undo"></span>Cancelar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock page_content %}
+
+{% block js_page %}
+{% endblock js_page %}

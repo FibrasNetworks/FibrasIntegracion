@@ -1,0 +1,34 @@
+{% extends 'base/base.html' %}
+{% load humanize %}
+
+{% block page_content %}
+
+<!-- Deuda de CLientes -->
+<div class="col-xl-3 col-md-6 mb-4">
+  {% csrf_token %}
+  <div class="card border-left-danger shadow h-100 py-2">
+    <div class="card-body">
+      <div class="row no-gutters align-items-center">
+        <div class="col mr-2">
+          <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Deuda Clientes</div>
+          {% if obj %}
+            {% for key, value in obj.items %}
+              <div class="h5 mb-0 font-weight-bold text-gray-800">${{value|intcomma }}</div>
+            {% endfor %}
+          {% else %}
+            <div class="h5 mb-0 font-weight-bold text-gray-800">$0.00</div>
+          {% endif %}
+        </div>
+
+      </a>
+      <a href="{% url 'interfaces:clientes_deuda' %}" class="btn btn-info btn-circle btn-sm">
+        <i class="fas fa-info-circle"></i>
+      </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+{% endblock %}
